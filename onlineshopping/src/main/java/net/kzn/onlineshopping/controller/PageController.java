@@ -11,14 +11,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 	
+//	@RequestMapping(value={"/","/home","/index"})
+//	public ModelAndView index(){
+//		System.out.println("entre por acá");
+//		ModelAndView mv = new ModelAndView( "page");
+//		mv.addObject("gretting", "Hello world spring mvc");
+//		return mv;
+//	}
+	
 	@RequestMapping(value={"/","/home","/index"})
 	public ModelAndView index(){
 		System.out.println("entre por acá");
-		ModelAndView mv = new ModelAndView( "page");
+		ModelAndView mv = new ModelAndView( "page2");
 		mv.addObject("gretting", "Hello world spring mvc");
 		return mv;
 	}
-	
 	
 	@RequestMapping(value="/test")
 	public ModelAndView test(@RequestParam(value="greeting", required=false) String greeting){
