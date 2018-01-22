@@ -52,8 +52,13 @@
 		<%@include file="contact.jsp" %>
 	</c:if>
 	
+	<!-- loading only when the user clicks All products or Products category -->
+	<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true}">
+		<%@include file="listProducts.jsp" %>
+	</c:if>
+	
 	<!-- Footer -->
-	<%@include file="../shared/footer.jsp" %>
+	<%@include file="../shared/footer.jsp" %> 
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="${js}/jquery.js"></script>
