@@ -23,7 +23,24 @@ public class PageController {
 	public ModelAndView index(){
 		System.out.println("entre por acá");
 		ModelAndView mv = new ModelAndView( "page2");
-		mv.addObject("gretting", "Hello world spring mvc");
+		mv.addObject("title", "Home");
+		mv.addObject("userClickHome", true);
+		return mv;
+	}
+	
+	@RequestMapping(value="/about")
+	public ModelAndView about(){
+		ModelAndView mv = new ModelAndView( "page2");
+		mv.addObject("title", "About us");
+		mv.addObject("userClickAbout", true);
+		return mv;
+	}
+	
+	@RequestMapping(value="/contact")
+	public ModelAndView contact(){
+		ModelAndView mv = new ModelAndView( "page2");
+		mv.addObject("title", "Contact us");
+		mv.addObject("userClickContact", true);
 		return mv;
 	}
 	
