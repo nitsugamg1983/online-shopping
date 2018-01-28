@@ -28,6 +28,9 @@
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 
+<!-- Bootstrap core CSS -->
+<link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
+
 <!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
 
@@ -63,6 +66,10 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="${js}/jquery.js"></script>
 	<script src="${js}/bootstrap.bundle.min.js"></script>
+	
+	<script src="${js}/jquery.dataTables.js"></script>
+	
+	
 	
 	<!-- self coded javascript  -->
 	<script src="${js}/myapp.js"></script>

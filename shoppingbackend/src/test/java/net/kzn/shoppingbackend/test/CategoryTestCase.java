@@ -59,7 +59,7 @@ public class CategoryTestCase {
 	
 	@Test
 	public void testDeleteCategory(){
-		category = categoryDAO.get(4);
+		category = categoryDAO.get(3);
 
 			
 		assertEquals("Successfully deleted a single category in the table",true,categoryDAO.delete(category));
