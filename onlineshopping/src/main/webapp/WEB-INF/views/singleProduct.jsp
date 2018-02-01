@@ -24,9 +24,21 @@
 			<hr/>
 			<h4>Price: <strong>&#8377; ${product.unitPrice} /-</strong></h4>
 			<hr/>
-			<h6>Qty. Available: ${product.quantity}</h6>
-			<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success">
-				<span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+			
+			<c:choose>
+				<c:when test="${product.quantity < 1}">
+					<h6>Qty. Available: <span color="red">Out of Stock</span></h6>
+					<a href="javascript:void(0)" class="btn btn-success disabled"><strike>
+						<span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</strike></a>
+				</c:when>
+				<c:otherwise>
+					<h6>Qty. Available: ${product.quantity}</h6>
+					<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success">
+						<span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+				</c:otherwise>
+			</c:choose>
+			
+			
 			<a href="${contextRoot}/show/all/products" class="btn btn-success">Back</a>
 		</div>
 	</div>
