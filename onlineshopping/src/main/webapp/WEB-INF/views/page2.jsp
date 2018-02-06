@@ -8,6 +8,8 @@
 <spring:url var="images" value="/resources/images" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"></c:set>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +27,9 @@
 	window.menu = '${title}';
 	window.contextRoot = '${contextRoot}';
 </script>
+
+Language : <a href="?lang=en">English</a>|<a href="?lang=es">Spanish</a>
+<spring:message code="attendee.name"/>
 
 <!-- Bootstrap Core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
