@@ -150,4 +150,14 @@ public class PageController {
 		mv.addObject("userClickShowProduct", true);
 		return mv;
 	}
+	
+	
+	@RequestMapping(value={"/ejemploDragula"})
+	public ModelAndView pruebaDragula(){
+		
+		ModelAndView mv = new ModelAndView( "ejemploDragula");
+		
+		
+		return mv;
+	}
 }
