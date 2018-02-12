@@ -12,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.kzn.onlineshopping.util.FileUploadUtility;
@@ -62,7 +65,13 @@ public class ManagementController {
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model,
 			HttpServletRequest request){
 		
-		new ProductValidator().validate(mProduct, results);
+		if(mProduct.getId()==0){
+			new ProductValidator().validate(mProduct, results);
+		}else{
+			if(!mProduct.getFile().getOriginalFilename().equals("")){
+				new ProductValidator().validate(mProduct, results);
+			}
+		}
 		
 		//check if there are any errors
 		if(results.hasErrors()){
@@ -73,13 +82,51 @@ public class ManagementController {
 		}
 		
 		logger.info(mProduct.toString());
-		productDAO.add(mProduct);
+		
+		if(mProduct.getId()==0){
+			productDAO.add(mProduct);
+		}else{
+			productDAO.update(mProduct);
+		}
+		
 		
 		if(!mProduct.getFile().getOriginalFilename().equals("")){
 			FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
 		}
 		
 		return "redirect:/manage/products?operation=product";
+	}
+	
+	@RequestMapping(value="/product/{id}/activation", method=RequestMethod.POST)
+	@ResponseBody
+	public String handleProductActivation(@PathVariable("id") int id){
+		
+		Product product = productDAO.get(id);
+		
+		boolean isActive = product.isActive();
+		
+		product.setActive(!product.isActive());
+		
+		productDAO.update(product);
+				
+		return (isActive)?"You have successfully deactivated the product with id "+product.getId():
+			"You have successfully activated the product with id "+product.getId();
+	}
+	
+	
+	@RequestMapping(value="/{id}/product", method=RequestMethod.GET)
+	public ModelAndView showManageProducts(@PathVariable(name="id")int id){
+		ModelAndView mv = new ModelAndView("page2");
+		
+		mv.addObject("userClickManageProducts",true);
+		mv.addObject("title","Manage Products");
+		
+		Product nProduct = productDAO.get(id);
+
+		
+		mv.addObject("product", nProduct);
+				
+		return mv;
 	}
 	
 	

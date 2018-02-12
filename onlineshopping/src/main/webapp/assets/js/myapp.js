@@ -78,7 +78,7 @@ $(function(){
 				{
 					data:'code',
 					mRender: function(data, type, row){
-						return '<img src="'+window.contextRoot+'/resources/images/'+data+'.jpg" class="dataTableImg"/>';
+						return '<img src="'+window.contextRoot+'/resources/images/'+data+'.jpg" class="dataTableImg" height="50" width="50"/>';
 						//return data;
 					}
 				},
@@ -130,7 +130,7 @@ $(function(){
 	var $alert =$('.alert');
 	
 	if($alert.length){
-		setTimeOut(function(){
+		setTimeout(function(){
 			$alert.fadeOut('slow');
 		}, 3000);
 	}
@@ -164,7 +164,7 @@ var $adminProductsTable = $('#adminProductsTable')
 				{
 					data:'code',
 					mRender: function(data, type, row){
-						return '<img src="'+window.contextRoot+'/resources/images/'+data+'.jpg" class="adminDataTableImg"/>';
+						return '<img src="'+window.contextRoot+'/resources/images/'+data+'.jpg" class="adminDataTableImg" height="50" width="50"/>';
 						//return data;
 					}
 				},
@@ -191,7 +191,7 @@ var $adminProductsTable = $('#adminProductsTable')
 					}
 				},
 				{
-					data:'avtive',
+					data:'active',
 					mRender: function(data, type, row){
 						var str = '';
 						if(data) {											
@@ -235,11 +235,20 @@ var $adminProductsTable = $('#adminProductsTable')
 				    	message: dText,
 				    	callback: function (confirmed) {
 					        if (confirmed) {
-					            bootbox.alert({
-					            	size:'medium',
-					            	title:'Information',
-					            	message:'You are going to perform operation on product '+value
-					            });
+					        	
+					        	var activationURL = window.contextRoot + '/manage/product/'+value+'/activation';
+					        	$.post(activationURL, function(data){
+					        		bootbox.alert({
+						            	size:'medium',
+						            	title:'Information',
+						            	message: data
+						            });
+					        		
+					        		
+					        		
+					        	});
+					        	
+					            
 					        }
 					        else {							        	
 					        	checkbox.prop('checked', !checked);
