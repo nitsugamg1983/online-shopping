@@ -96,6 +96,9 @@ Language : <a href="?lang=en">English</a>|<a href="?lang=es">Spanish</a>
 	<!-- DataTable Bootstrap Script -->
 	<script src="${js}/dataTables.bootstrap.js"></script>
 	
+	<!-- bootbox Script -->
+	<script src="${js}/bootbox.min.js"></script>
+	
 	<!-- myself js -->
 	<script src="${js}/myapp.js"></script>
 

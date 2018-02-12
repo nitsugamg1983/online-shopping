@@ -46,7 +46,7 @@ $(function(){
 	
 	if($table.length){
 		
-		var jasonUrl = '';
+		var jsonUrl = '';
 		
 		console.info("tiene productos "+window.categoryId);
 		
@@ -134,6 +134,130 @@ $(function(){
 			$alert.fadeOut('slow');
 		}, 3000);
 	}
+	
+	
+	//------------data table for admin---------------
+	
+var $adminProductsTable = $('#adminProductsTable')
+	
+	if($adminProductsTable.length){
+		
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
+		
+		
+		console.info("tiene productos "+jsonUrl);
+		
+		
+		$adminProductsTable.DataTable({
+			lengthMenu: [[10,30,50,-1],['10 Records','30 Records','50 Records','All']],
+			pagelength:5,
+			ajax:{
+				url:jsonUrl,
+				dataSrc: ''
+			},
+			
+			columns:[
+				
+				{
+					data: 'id'
+				},
+				{
+					data:'code',
+					mRender: function(data, type, row){
+						return '<img src="'+window.contextRoot+'/resources/images/'+data+'.jpg" class="adminDataTableImg"/>';
+						//return data;
+					}
+				},
+				{
+					data:'name'
+				},
+				{
+					data:'brand'
+				},
+				{
+					data:'quantity',
+					mRender: function(data, type, row){
+						console.info("data "+data);
+						if(data < 1){
+							return '<span style="color:red">Out of stock!</span>';
+						}
+						return data;
+					}
+				},
+				{
+					data:'unitPrice',
+					mRender: function(data, type, row){
+						return '&#8377; '+data;
+					}
+				},
+				{
+					data:'avtive',
+					mRender: function(data, type, row){
+						var str = '';
+						if(data) {											
+							str += '<label class="switch"> <input type="checkbox" value="'+row.id+'" checked="checked">  <div class="slider round"> </div></label>';
+							
+						}else {
+							str += '<label class="switch"> <input type="checkbox" value="'+row.id+'">  <div class="slider round"> </div></label>';
+						}
+						
+						return str;
+					}
+				},
+				{
+					data : 'id',
+					bSortable : false,
+					mRender : function(data, type, row) {
+
+						var str = '';
+						str += '<a href="'
+								+ window.contextRoot
+								+ '/manage/'
+								+ data
+								+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+
+						return str;
+					}
+				}		
+			],
+			
+			initComplete: function () {
+				var api = this.api();
+				api.$('.switch input[type="checkbox"]').on('change' , function() {							
+					var dText = (this.checked)? 'You want to activate the Product?': 'You want to de-activate the Product?';
+					var checked = this.checked;
+					var checkbox = $(this);
+					var value = checkbox.prop('value');
+					
+				    bootbox.confirm({
+				    	size: 'medium',
+				    	title: 'Product Activation/Deactivation',
+				    	message: dText,
+				    	callback: function (confirmed) {
+					        if (confirmed) {
+					            bootbox.alert({
+					            	size:'medium',
+					            	title:'Information',
+					            	message:'You are going to perform operation on product '+value
+					            });
+					        }
+					        else {							        	
+					        	checkbox.prop('checked', !checked);
+					        }
+				    	}
+				    });																											
+				});
+					
+			}
+			
+			
+			
+			
+		});
+	}
+	
+	
+	
 	
 }
 )
