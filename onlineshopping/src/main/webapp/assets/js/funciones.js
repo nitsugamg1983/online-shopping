@@ -7,6 +7,20 @@ dragula([$('drag-elements'), $('drop-target')], {
 }).on('drop', function(el) {
   if ($('drop-target').children.length > 0) {
     $('display').innerHTML = $('drop-target').innerHTML;
+    
+    
+    alert($('drop-target').children);
+    
+    //var imagenes = $('div img');
+    
+    
+    
+//    
+//    
+//    $imagenes.each(function(){
+//    	alert($(this).attr('src'));
+//    });
+    
   } else {
     $('display').innerHTML = "Display";
   }

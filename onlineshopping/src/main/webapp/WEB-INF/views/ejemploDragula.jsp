@@ -44,32 +44,20 @@
       
 
 		<div>		
-			<table id="productList" class="table table-striped table-borderd">
-				<tr>
-					<td>
+			
 						<img src="${contextRoot}/resources/images/PRD74AC8F1A-1EEA-4DA.jpg" height="30" width="30" class="dataTableImg"/>
-					</td>
-				</tr>				
-			</table>
+					
 		</div>	
 			
 		<div>	
-			<table id="productList2" class="table table-striped table-borderd">
-				<tr>
-					<td>
+			
 						<img src="${contextRoot}/resources/images/PRD74AC8F1A-1EEA-4DA.jpg" height="30" width="30" class="dataTableImg"/>
-					</td>
-				</tr>				
-			</table>
+					
 		</div>
 		<div>	
-			<table id="productList3" class="table table-striped table-borderd">
-				<tr>
-					<td>
+			
 						<img src="${contextRoot}/resources/images/PRD74AC8F1A-1EEA-4DA.jpg" height="30" width="30" class="dataTableImg"/>
-					</td>
-				</tr>				
-			</table>
+					
 		</div>
       
     </div>

@@ -49,13 +49,17 @@ public class ManagementController {
 		Product nProduct = new Product();
 		nProduct.setSupplierId(1);
 		nProduct.setActive(true);
+		nProduct.setId(0);
 		
 		mv.addObject("product", nProduct);
 		
 		if(operation!=null){
 			if(operation.equals("product")){
 				mv.addObject("message", "Product Submitted Successfully");
+			}else if(operation.equals("category")){
+				mv.addObject("message", "Category Submitted Successfully");
 			}
+			
 		}
 		
 		return mv;
@@ -129,10 +133,22 @@ public class ManagementController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/category", method=RequestMethod.POST)
+	public String handleCategorySubmission(@ModelAttribute("category") Category category){
+		
+		categoryDAO.add(category);
+		return "redirect:/manage/products?operation=category";
+	}
+	
 	
 	@ModelAttribute("categories")
 	public List<Category> getCategories(){
 		return categoryDAO.list();
+	}
+	
+	@ModelAttribute("category")
+	public Category getCategory(){
+		return new Category();
 	}
 
 	
