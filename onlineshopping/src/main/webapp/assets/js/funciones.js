@@ -6,12 +6,20 @@ dragula([$('drag-elements'), $('drop-target')], {
   revertOnSpill: true
 }).on('drop', function(el) {
   if ($('drop-target').children.length > 0) {
-    $('display').innerHTML = $('drop-target').innerHTML;
+    
+	  
+	  
+	  $('display').innerHTML = $('drop-target').innerHTML;
     
     
-    alert($('drop-target').children);
+	  var $dropArea = $('display');
+	  
+    alert($dropArea.children);
     
-    //var imagenes = $('div img');
+    
+    $dropArea.children.each(function(){
+    	
+    })
     
     
     
