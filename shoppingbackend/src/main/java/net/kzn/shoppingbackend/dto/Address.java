@@ -1,5 +1,7 @@
 package net.kzn.shoppingbackend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,9 +13,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ADDRESS")
-public class Address {
+public class Address implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2819312950222493198L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;

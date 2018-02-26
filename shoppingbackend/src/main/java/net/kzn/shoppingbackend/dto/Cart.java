@@ -1,5 +1,6 @@
 package net.kzn.shoppingbackend.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -12,7 +13,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CART")
-public class Cart {
+public class Cart implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 786028456437758405L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
