@@ -25,7 +25,7 @@ public class HibernateConfig {
 	private static final String DATABASE_USERNAME = "sa";
 	private static final String DATABASE_PASSWORD = "";
 	
-	@Bean
+	@Bean(name="dataSource")
 	public DataSource getDataSource(){
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setUrl(DATABASE_URL);
