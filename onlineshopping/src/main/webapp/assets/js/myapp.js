@@ -300,5 +300,40 @@ var $adminProductsTable = $('#adminProductsTable')
 	
 	
 	
+	var $loginForm = $('#loginForm');
+	
+	if($loginForm.length){
+		$loginForm.validate({
+			rules : {
+				username :{
+					required : true,
+					email : true
+				},
+				password : {
+					required : true
+				}
+			},
+			messages :{
+				username : {
+					required : 'Please add username!',
+					email : 'Please enter valid email address'
+				},
+				password : {
+					required : 'Please add password!'
+				}
+			},
+			errorElement : 'em',
+			errorPlacement :function(error, element){
+				//add the class for help-block
+				error.addClass('help-block');
+				//add the error element after the input element
+				error.insertAfter(element);
+				
+			}
+		});
+	}
+	
+	
+	
 }
 )

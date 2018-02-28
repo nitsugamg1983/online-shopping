@@ -49,41 +49,51 @@ Language : <a href="?lang=en">English</a>|<a href="?lang=es">Spanish</a>
 
 <body>
 
-	<!-- Navigation -->
+	<div class="wrapper">
+		
+		<!-- Navigation -->
 	<%@include file="../shared/navbar.jsp"%>
+	
+	<div class="content">
+		<!-- Page Content -->
+		<!-- loading home page -->
+		<c:if test="${userClickHome == true}">
+			<%@include file="home.jsp" %>
+		</c:if>
+		<!-- loading only when the user clicks about -->
+		<c:if test="${userClickAbout == true}">
+			<%@include file="about.jsp" %>
+		</c:if>
+		<!-- loading only when the user clicks contact -->
+		<c:if test="${userClickContact == true}">
+			<%@include file="contact.jsp" %>
+		</c:if>
+		
+		<!-- loading only when the user clicks All products or Products category -->
+		<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true}">
+			<%@include file="listProducts.jsp" %>
+		</c:if>
+		
+		<!-- loading only when the user clicks product -->
+		<c:if test="${userClickShowProduct == true}">
+			<%@include file="singleProduct.jsp" %>
+		</c:if>
+		
+		<!-- loading only when the user clicks manage product -->
+		<c:if test="${userClickManageProducts == true}">
+			<%@include file="manageProducts.jsp" %>
+		</c:if>
+		
+	</div>
 
-	<!-- Page Content -->
-	<!-- loading home page -->
-	<c:if test="${userClickHome == true}">
-		<%@include file="home.jsp" %>
-	</c:if>
-	<!-- loading only when the user clicks about -->
-	<c:if test="${userClickAbout == true}">
-		<%@include file="about.jsp" %>
-	</c:if>
-	<!-- loading only when the user clicks contact -->
-	<c:if test="${userClickContact == true}">
-		<%@include file="contact.jsp" %>
-	</c:if>
-	
-	<!-- loading only when the user clicks All products or Products category -->
-	<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true}">
-		<%@include file="listProducts.jsp" %>
-	</c:if>
-	
-	<!-- loading only when the user clicks product -->
-	<c:if test="${userClickShowProduct == true}">
-		<%@include file="singleProduct.jsp" %>
-	</c:if>
-	
-	<!-- loading only when the user clicks manage product -->
-	<c:if test="${userClickManageProducts == true}">
-		<%@include file="manageProducts.jsp" %>
-	</c:if>
 	
 	<!-- Footer -->
 	<%@include file="../shared/footer.jsp" %> 
+		
+	
+	</div>
 
+	
 	<!-- jQuery -->
 	<script src="${js}/jquery.js"></script>
 	<script src="${js}/jquery.validate.min.js"></script>
