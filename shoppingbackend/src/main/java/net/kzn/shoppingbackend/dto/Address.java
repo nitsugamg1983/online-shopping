@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name="ADDRESS")
 public class Address implements Serializable{
@@ -23,15 +25,28 @@ public class Address implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	@Column(name="ADDRESS_LINE_ONE")
+	@NotBlank(message="Please enter addres one")
 	private String addressLineOne;
+	
 	@Column(name="ADDRESS_LINE_TWO")
+	@NotBlank(message="Please enter address two")
 	private String addressLineTwo;
+	
+	@NotBlank(message="Please enter city")
 	private String city;
+	
+	@NotBlank(message="Please enter state")
 	private String state;
+	
+	@NotBlank(message="Please enter country")
 	private String country;
+	
 	@Column(name="POSTAL_CODE")
+	@NotBlank(message="Please enter postal code")
 	private String postalCode;
+	
 	@Column(name="IS_BILLING")
 	private boolean isBilling;
 	@Column(name="IS_SHIPPING")

@@ -28,6 +28,7 @@
      <div class="col-md-8">
       <sf:input type="text" path="firstName" class="form-control"
        placeholder="First Name" />
+       <sf:errors path="firstName" cssClass="help-block" element="em" />
      </div>
     </div>
 
@@ -37,6 +38,7 @@
         <div class="col-md-8">
          <sf:input type="text" path="lastName" class="form-control"
           placeholder="Last Name" />
+          <sf:errors path="lastName" cssClass="help-block" element="em" />
         </div>
        </div>
       
@@ -45,6 +47,7 @@
         <div class="col-md-8">
          <sf:input type="text" path="email" class="form-control"
           placeholder="abc@zyx.com" />
+          <sf:errors path="email" cssClass="help-block" element="em" />
         </div>
        </div>
 
@@ -53,6 +56,7 @@
         <div class="col-md-8">
          <sf:input type="text" path="contactNumber" class="form-control"
           placeholder="XXXXXXXXXX" maxlength="10" />
+          <sf:errors path="contactNumber" cssClass="help-block" element="em" />
         </div>
        </div>
        
@@ -61,6 +65,17 @@
         <div class="col-md-8">
          <sf:input type="password" path="password" class="form-control"
           placeholder="Password" />
+          <sf:errors path="password" cssClass="help-block" element="em" />
+        </div>
+       </div>
+       
+       
+       <div class="form-group">
+        <label class="control-label col-md-4">Confirm Password</label>
+        <div class="col-md-8">
+         <sf:input type="password" path="confirmPassword" class="form-control"
+          placeholder="Confirm Password" />
+          <sf:errors path="confirmPassword" cssClass="help-block" element="em" />
         </div>
        </div>
        

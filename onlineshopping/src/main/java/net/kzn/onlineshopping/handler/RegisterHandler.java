@@ -1,6 +1,8 @@
 package net.kzn.onlineshopping.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.binding.message.MessageBuilder;
+import org.springframework.binding.message.MessageContext;
 import org.springframework.stereotype.Component;
 
 import net.kzn.onlineshopping.model.RegisterModel;
@@ -46,6 +48,35 @@ public class RegisterHandler {
 		billing.setBilling(true);
 
 		userDAO.addAddress(billing);
+		
+		
+		return transitionValue;
+	}
+	
+	public String validateUser(User user, MessageContext error){
+		String transitionValue="success";
+		
+		if(!(user.getPassword().equals(user.getConfirmPassword()))){
+			error.addMessage(new MessageBuilder()
+					.error()
+					.source("confirmPassword")
+					.defaultText("Password does not match")
+					.build()
+				);
+			
+			transitionValue="failure";
+		}
+		
+		if(userDAO.getByEmail(user.getEmail())!=null){
+			error.addMessage(new MessageBuilder()
+					.error()
+					.source("email")
+					.defaultText("The email already exists")
+					.build()
+				);
+			
+			transitionValue="failure";
+		}
 		
 		
 		return transitionValue;
