@@ -20,6 +20,9 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
 
 <title>Online Shopping - ${title}</title>
 
@@ -65,6 +68,18 @@ Language : <a href="?lang=en">English</a>|<a href="?lang=es">Spanish</a>
 	<div class="content">
 	
 	<div class="container">
+	
+	<c:if test="${not empty message }">
+		 <div class="row">
+     
+     		<div class="col-md-offset-3 col-md-6">
+     		
+     			<div class="alert alert-dange">
+     				${message}
+     			</div>
+     		</div>
+     	</div>
+	</c:if>
     
     <div class="row">
      
@@ -95,6 +110,7 @@ Language : <a href="?lang=en">English</a>|<a href="?lang=es">Spanish</a>
          <div class="form-group">
           <div class="col-md-offset-4 col-md-8">
            <input type="submit" value="Login" class="btn btn-primary"/>
+           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           </div>
          </div>
         </form>
@@ -126,6 +142,7 @@ Language : <a href="?lang=en">English</a>|<a href="?lang=es">Spanish</a>
 	
 	<!-- jQuery -->
 	<script src="${js}/jquery.js"></script>
+	
 	<script src="${js}/jquery.validate.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
